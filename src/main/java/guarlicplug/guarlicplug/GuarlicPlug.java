@@ -12,7 +12,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.Command;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-i
 
 public final class GuarlicPlug extends JavaPlugin implements Listener, CommandExecutor {
 
