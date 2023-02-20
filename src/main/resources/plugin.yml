@@ -1,0 +1,15 @@
+name: GuarlicPlug
+version: '1.0'
+main: guarlicplug.guarlicplug.GuarlicPlug
+api-version: 1.19
+authors: [ Guarlic ]
+description: Guarlic Server Plugin
+commands:
+  happy:
+    description: 'Use when you feels happy!'
+    aliases: [ h ]
+  angry:
+    description: 'Use when you feels angry!'
+    aliases: [ a ]
+  inv:
+    description: 'Special inventory'
