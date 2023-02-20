@@ -6,10 +6,9 @@ import org.bukkit.ChatColor;
 import org.bukkit.Particle;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.event.block.Action;
 
 public class Skill {
-    public static void kalis_axtra(Player p, Action a) {
+    public static void kalis_axtra(Player p) {
         p.sendMessage(ChatColor.RED + "Kalis Axtra!");
 
         p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 30, 5));

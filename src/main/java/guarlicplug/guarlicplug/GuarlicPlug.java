@@ -66,7 +66,7 @@ public final class GuarlicPlug extends JavaPlugin implements Listener, CommandEx
         if (a.equals(Action.LEFT_CLICK_AIR) || a.equals(Action.LEFT_CLICK_BLOCK)) {
             if (p.getInventory().getItemInMainHand().getType().equals(Material.NETHERITE_SWORD)) {
                 if (p.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals(ChatColor.AQUA + "흑도 청룡검")) {
-                    Skill.kalis_axtra(p, a);
+                    Skill.kalis_axtra(p);
                 }
             }
         }
