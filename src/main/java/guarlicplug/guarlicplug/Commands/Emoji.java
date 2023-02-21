@@ -1,6 +1,5 @@
-package guarlicplug.guarlicplug;
+package guarlicplug.guarlicplug.Commands;
 
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.ChatColor;

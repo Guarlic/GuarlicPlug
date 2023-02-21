@@ -1,4 +1,4 @@
-package guarlicplug.guarlicplug;
+package guarlicplug.guarlicplug.Events;
 
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -11,7 +11,7 @@ public class Skill {
     public static void kalis_axtra(Player p) {
         p.sendMessage(ChatColor.RED + "Kalis Axtra!");
 
-        p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 30, 5));
+        p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 30, 5, false, true));
         p.getWorld().spawnParticle(Particle.EXPLOSION_HUGE, p.getLocation(), 1);
         p.getWorld().spawnParticle(Particle.FLAME, p.getLocation().add(0.0, 1.0, 0.0), 100);
         p.getWorld().playSound(p.getLocation(), Sound.ENTITY_BLAZE_DEATH, 5, 1);

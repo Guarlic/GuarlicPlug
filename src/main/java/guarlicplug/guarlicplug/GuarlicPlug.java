@@ -1,5 +1,6 @@
 package guarlicplug.guarlicplug;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
@@ -13,12 +14,18 @@ import org.bukkit.command.Command;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import guarlicplug.guarlicplug.Commands.Emoji;
+import guarlicplug.guarlicplug.Commands.InventoryCommand;
+import guarlicplug.guarlicplug.Events.Skill;
+
 public final class GuarlicPlug extends JavaPlugin implements Listener, CommandExecutor {
 
     @Override
     public void onEnable() {
         // Plugin startup logic
         getServer().getPluginManager().registerEvents(this, this);
+
+        Bukkit.broadcastMessage(ChatColor.GREEN + "GuarlicPlug Enabled");
 
         getCommand("happy").setExecutor(this);
         getCommand("angry").setExecutor(this);
@@ -28,6 +35,7 @@ public final class GuarlicPlug extends JavaPlugin implements Listener, CommandEx
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        Bukkit.broadcastMessage(ChatColor.RED + "GuarlicPlug Disabled");
     }
 
     @Override
