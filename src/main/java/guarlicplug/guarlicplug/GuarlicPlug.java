@@ -34,6 +34,7 @@ public final class GuarlicPlug extends JavaPlugin implements Listener, CommandEx
         getCommand("happy").setExecutor(this);
         getCommand("angry").setExecutor(this);
         getCommand("inv").setExecutor(this);
+        getCommand("cooldown_reset").setExecutor(this);
     }
 
     @Override
@@ -43,6 +44,7 @@ public final class GuarlicPlug extends JavaPlugin implements Listener, CommandEx
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        Player p = (Player) sender;
 
         switch (command.getName()) {
             case "happy":
@@ -55,6 +57,18 @@ public final class GuarlicPlug extends JavaPlugin implements Listener, CommandEx
 
             case "inv":
                 InventoryCommand.inv(sender);
+                break;
+
+            case "cooldown_reset":
+                if (!sender.isOp()) {
+                    sender.sendMessage(ChatColor.DARK_RED + "Failed to reset cooldowns because you do not have op.");
+
+                    break;
+                }
+
+                k_cooldown.clear();
+                u_cooldown.clear();
+
                 break;
         }
 
