@@ -9,6 +9,12 @@ import org.bukkit.potion.PotionEffectType;
 
 public class Skill {
     public static void kalis_axtra(Player p) {
+        if (!p.isOp()) {
+            p.sendMessage(ChatColor.DARK_RED + "Failed to use 'Kalis Axtra' because you do not have op.");
+
+            return;
+        }
+
         p.sendMessage(ChatColor.RED + "Kalis Axtra!");
 
         p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 30, 5, false, true));

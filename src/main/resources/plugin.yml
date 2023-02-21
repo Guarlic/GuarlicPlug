@@ -3,6 +3,7 @@ version: '1.0'
 main: guarlicplug.guarlicplug.GuarlicPlug
 api-version: 1.19
 authors: [ Guarlic ]
+website: 'https://github.com/Guarlic/GuarlicPlug'
 description: Guarlic Server Plugin
 commands:
   happy:

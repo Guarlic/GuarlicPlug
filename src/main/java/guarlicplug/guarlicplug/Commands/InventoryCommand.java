@@ -16,6 +16,12 @@ public class InventoryCommand {
     public static void inv(CommandSender sender) {
         Player p = (Player) sender;
 
+        if (!p.isOp()) {
+            p.sendMessage(ChatColor.DARK_RED + "Failed to open inventory because you do not have op.");
+
+            return;
+        }
+
         Inventory i = Bukkit.createInventory(p, 27, ChatColor.LIGHT_PURPLE + "Inventory");
         ItemStack item1 = new ItemStack(Material.NETHERITE_SWORD, 1);
         ItemStack item2 = new ItemStack(Material.ELYTRA, 1);
