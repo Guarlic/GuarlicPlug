@@ -18,6 +18,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import guarlicplug.guarlicplug.Commands.Emoji;
 import guarlicplug.guarlicplug.Commands.InventoryCommand;
+import guarlicplug.guarlicplug.Commands.CooldownReset;
 import guarlicplug.guarlicplug.Events.Skill;
 
 
@@ -60,15 +61,7 @@ public final class GuarlicPlug extends JavaPlugin implements Listener, CommandEx
                 break;
 
             case "cooldown_reset":
-                if (!sender.isOp()) {
-                    sender.sendMessage(ChatColor.DARK_RED + "Failed to reset cooldowns because you do not have op.");
-
-                    break;
-                }
-
-                k_cooldown.clear();
-                u_cooldown.clear();
-
+                CooldownReset.cooldown_reset(sender, k_cooldown, u_cooldown);
                 break;
         }
 
