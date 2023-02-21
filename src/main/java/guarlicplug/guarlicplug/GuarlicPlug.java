@@ -1,5 +1,8 @@
 package guarlicplug.guarlicplug;
 
+import java.util.ArrayList;
+
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
@@ -17,7 +20,11 @@ import guarlicplug.guarlicplug.Commands.Emoji;
 import guarlicplug.guarlicplug.Commands.InventoryCommand;
 import guarlicplug.guarlicplug.Events.Skill;
 
+
 public final class GuarlicPlug extends JavaPlugin implements Listener, CommandExecutor {
+
+    private ArrayList<Player> k_cooldown = new ArrayList<Player>();
+    private ArrayList<Player> u_cooldown = new ArrayList<Player>();
 
     @Override
     public void onEnable() {
@@ -69,7 +76,34 @@ public final class GuarlicPlug extends JavaPlugin implements Listener, CommandEx
         if (a.equals(Action.LEFT_CLICK_AIR) || a.equals(Action.LEFT_CLICK_BLOCK)) {
             if (p.getInventory().getItemInMainHand().getType().equals(Material.NETHERITE_SWORD)) {
                 if (p.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals(ChatColor.AQUA + "흑도 청룡검")) {
-                    Skill.kalis_axtra(p);
+                    if (!k_cooldown.contains(p)) {
+                        Skill.kalis_axtra(p);
+
+                        k_cooldown.add(p);
+
+                        Bukkit.getScheduler().scheduleSyncDelayedTask(this, () -> {
+                            k_cooldown.remove(p);
+                        }, 100);
+                    }
+                    else {
+                        p.sendMessage(ChatColor.DARK_RED + "Failed to use 'Kalis Axtra' because of cooldown.");
+                    }
+                }
+            }
+            else if (p.getInventory().getItemInMainHand().getType().equals(Material.GOLDEN_SWORD)) {
+                if (p.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals(ChatColor.YELLOW + "ムラマサ")) {
+                    if (!u_cooldown.contains(p)) {
+                        Skill.ultra_armor(p);
+
+                        u_cooldown.add(p);
+
+                        Bukkit.getScheduler().scheduleSyncDelayedTask(this, () -> {
+                            u_cooldown.remove(p);
+                        }, 600);
+                    }
+                    else {
+                        p.sendMessage(ChatColor.DARK_RED + "Failed to Use '金剛火災' because of cooldown.");
+                    }
                 }
             }
         }
