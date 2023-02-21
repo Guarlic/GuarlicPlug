@@ -1,6 +1,5 @@
 package guarlicplug.guarlicplug;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
@@ -18,7 +17,7 @@ import guarlicplug.guarlicplug.Commands.Emoji;
 import guarlicplug.guarlicplug.Commands.InventoryCommand;
 import guarlicplug.guarlicplug.Events.Skill;
 
-public final class GuarlicPlug extends JavaPlugin implements Listener, CommandExecutor {
+public final class Main extends JavaPlugin implements Listener, CommandExecutor {
 
     @Override
     public void onEnable() {
