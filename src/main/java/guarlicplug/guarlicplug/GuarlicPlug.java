@@ -17,7 +17,7 @@ import guarlicplug.guarlicplug.Commands.Emoji;
 import guarlicplug.guarlicplug.Commands.InventoryCommand;
 import guarlicplug.guarlicplug.Events.Skill;
 
-public final class Main extends JavaPlugin implements Listener, CommandExecutor {
+public final class GuarlicPlug extends JavaPlugin implements Listener, CommandExecutor {
 
     @Override
     public void onEnable() {
