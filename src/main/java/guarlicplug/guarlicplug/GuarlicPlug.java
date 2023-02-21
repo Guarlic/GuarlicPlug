@@ -25,8 +25,6 @@ public final class GuarlicPlug extends JavaPlugin implements Listener, CommandEx
         // Plugin startup logic
         getServer().getPluginManager().registerEvents(this, this);
 
-        Bukkit.broadcastMessage(ChatColor.GREEN + "GuarlicPlug Enabled");
-
         getCommand("happy").setExecutor(this);
         getCommand("angry").setExecutor(this);
         getCommand("inv").setExecutor(this);
@@ -35,7 +33,6 @@ public final class GuarlicPlug extends JavaPlugin implements Listener, CommandEx
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-        Bukkit.broadcastMessage(ChatColor.RED + "GuarlicPlug Disabled");
     }
 
     @Override
