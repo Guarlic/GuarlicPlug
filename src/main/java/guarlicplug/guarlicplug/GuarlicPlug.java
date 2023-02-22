@@ -30,6 +30,7 @@ public final class GuarlicPlug extends JavaPlugin implements Listener, CommandEx
     @Override
     public void onEnable() {
         // Plugin startup logic
+        getLogger().info("GuarlicPlug is Enabled!");
         getServer().getPluginManager().registerEvents(this, this);
 
         getCommand("happy").setExecutor(this);
@@ -41,12 +42,12 @@ public final class GuarlicPlug extends JavaPlugin implements Listener, CommandEx
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        getLogger().info("GuarlicPlug is Disabled!");
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        Player p = (Player) sender;
-
+        // Commands
         switch (command.getName()) {
             case "happy":
                 Emoji.happy(sender);
@@ -70,6 +71,7 @@ public final class GuarlicPlug extends JavaPlugin implements Listener, CommandEx
 
     @EventHandler
     public void Join(PlayerJoinEvent event) {
+        // Player Join
         Player p = event.getPlayer();
 
         p.sendMessage(ChatColor.GOLD + "Welcome to this server, " + ChatColor.LIGHT_PURPLE + p.getDisplayName() + "!");
@@ -77,9 +79,11 @@ public final class GuarlicPlug extends JavaPlugin implements Listener, CommandEx
 
     @EventHandler
     public void Skill(PlayerInteractEvent event) {
+        // Skills
         Player p = event.getPlayer();
         Action a = event.getAction();
 
+        // Kalis Axtra
         if (a.equals(Action.LEFT_CLICK_AIR) || a.equals(Action.LEFT_CLICK_BLOCK)) {
             if (p.getInventory().getItemInMainHand().getType().equals(Material.NETHERITE_SWORD)) {
                 if (p.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals(ChatColor.AQUA + "흑도 청룡검")) {
@@ -97,6 +101,8 @@ public final class GuarlicPlug extends JavaPlugin implements Listener, CommandEx
                     }
                 }
             }
+
+            // 金剛火災
             else if (p.getInventory().getItemInMainHand().getType().equals(Material.GOLDEN_SWORD)) {
                 if (p.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals(ChatColor.YELLOW + "ムラマサ")) {
                     if (!u_cooldown.contains(p)) {

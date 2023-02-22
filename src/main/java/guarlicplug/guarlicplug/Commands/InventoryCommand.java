@@ -23,6 +23,7 @@ public class InventoryCommand {
         }
 
         Inventory i = Bukkit.createInventory(p, 27, ChatColor.LIGHT_PURPLE + "Inventory");
+
         ItemStack item1 = new ItemStack(Material.NETHERITE_SWORD, 1);
         ItemStack item2 = new ItemStack(Material.ELYTRA, 1);
         ItemStack item3 = new ItemStack(Material.SHIELD, 1);
