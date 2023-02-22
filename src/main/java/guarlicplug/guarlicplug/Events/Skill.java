@@ -28,8 +28,9 @@ public class Skill {
         p.sendMessage(ChatColor.GOLD + "金剛火災!");
 
         p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 200, 5, false, false));
-        p.getWorld().spawnParticle(Particle.LAVA, p.getLocation(), 10);
+        p.getWorld().spawnParticle(Particle.LAVA, p.getLocation(), 100);
         p.getWorld().spawnParticle(Particle.FLAME, p.getLocation().add(0.0, 1.0, 0.0), 100);
         p.getWorld().playSound(p.getLocation(), Sound.ENTITY_WITHER_DEATH, 5, 1);
+        p.getWorld().playSound(p.getLocation(), Sound.ITEM_TOTEM_USE, 5, 1);
     }
 }
