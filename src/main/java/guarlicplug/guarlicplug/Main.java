@@ -22,7 +22,7 @@ import guarlicplug.guarlicplug.Commands.CooldownReset;
 import guarlicplug.guarlicplug.Events.Skill;
 
 
-public final class GuarlicPlug extends JavaPlugin implements Listener, CommandExecutor {
+public final class Main extends JavaPlugin implements Listener, CommandExecutor {
 
     private ArrayList<Player> k_cooldown = new ArrayList<Player>();
     private ArrayList<Player> u_cooldown = new ArrayList<Player>();

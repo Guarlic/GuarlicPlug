@@ -1,6 +1,6 @@
 name: GuarlicPlug
 version: '1.1'
-main: guarlicplug.guarlicplug.GuarlicPlug
+main: guarlicplug.guarlicplug.Main
 api-version: 1.19
 authors: [ Guarlic ]
 website: 'https://github.com/Guarlic/GuarlicPlug'
