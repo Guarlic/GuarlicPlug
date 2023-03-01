@@ -62,7 +62,7 @@ public final class Main extends JavaPlugin implements Listener, CommandExecutor 
                 break;
 
             case "cooldown_reset":
-                CooldownReset.cooldown_reset(sender, k_cooldown, u_cooldown);
+                CooldownReset.cooldown_reset(sender, k_cooldown, u_cooldown, args);
                 break;
         }
 
