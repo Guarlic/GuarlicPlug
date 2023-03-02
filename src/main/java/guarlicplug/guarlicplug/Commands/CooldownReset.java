@@ -13,11 +13,36 @@ public class CooldownReset {
             return;
         }
 
-        if (args.length > 0) {
+        if (args.length > 1) {
+            sender.sendMessage(ChatColor.DARK_RED + "Failed to reset cooldown because to many arguments.");
+
+            return;
+        }
+
+        if (args.length > 0 && !args[0].equals("@a")) {
+            if (args[0].equals("@p") || args[0].equals("@s")) {
+                cooldown1.remove(sender);
+                cooldown2.remove(sender);
+
+                sender.sendMessage(ChatColor.GREEN + "Successfully reset cooldown of you.");
+
+                return;
+            }
+
             Player target = sender.getServer().getPlayer(args[0]);
 
             if (target == null) {
-                sender.sendMessage(ChatColor.DARK_RED + "Failed to reset cooldown because target is not online.");
+                sender.sendMessage(ChatColor.DARK_RED + "Failed to reset cooldown because wrong target.");
+
+                return;
+            }
+
+            if (target.equals(sender)) {
+                cooldown1.remove(sender);
+                cooldown2.remove(sender);
+
+                sender.sendMessage(ChatColor.GREEN + "Successfully reset cooldown of you.");
+
                 return;
             }
 
