@@ -1,6 +1,11 @@
 package guarlicplug.guarlicplug;
 
+import java.text.FieldPosition;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.text.DateFormat;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -75,6 +80,12 @@ public final class Main extends JavaPlugin implements Listener, CommandExecutor 
         Player p = event.getPlayer();
 
         p.sendMessage(ChatColor.GOLD + "Welcome to this server, " + ChatColor.LIGHT_PURPLE + p.getDisplayName() + "!");
+
+        if (!p.hasPlayedBefore()) {
+            for (Player g : p.getWorld().getPlayers()) {
+                g.sendMessage(ChatColor.LIGHT_PURPLE + p.getName() + ChatColor.DARK_GRAY + " has joined this server " + ChatColor.RED + "FIRST TIME!");
+            }
+        }
     }
 
     @EventHandler
