@@ -1,5 +1,5 @@
 name: GuarlicPlug
-version: '1.3'
+version: '1.4'
 main: guarlicplug.guarlicplug.Main
 api-version: 1.19
 authors: [ Guarlic ]
@@ -15,4 +15,10 @@ commands:
   inv:
     description: 'Special inventory'
   cooldown_reset:
-    description: 'Reset cooldown of everyone'
+    description: 'Reset cooldown of target'
+  set:
+    description: 'Save this coordinate'
+  get:
+    description: 'Get saved coordinate'
+  del:
+    description: 'Delete saved coordinate'

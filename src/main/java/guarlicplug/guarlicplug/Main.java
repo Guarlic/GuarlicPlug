@@ -1,11 +1,6 @@
 package guarlicplug.guarlicplug;
 
-import java.text.FieldPosition;
-import java.text.ParsePosition;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.text.DateFormat;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -24,6 +19,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import guarlicplug.guarlicplug.Commands.Emoji;
 import guarlicplug.guarlicplug.Commands.InventoryCommand;
 import guarlicplug.guarlicplug.Commands.CooldownReset;
+import guarlicplug.guarlicplug.Commands.WayPoint;
 import guarlicplug.guarlicplug.Events.Skill;
 
 
@@ -42,6 +38,9 @@ public final class Main extends JavaPlugin implements Listener, CommandExecutor 
         getCommand("angry").setExecutor(this);
         getCommand("inv").setExecutor(this);
         getCommand("cooldown_reset").setExecutor(this);
+        getCommand("set").setExecutor(this);
+        getCommand("get").setExecutor(this);
+        getCommand("del").setExecutor(this);
     }
 
     @Override
@@ -68,6 +67,18 @@ public final class Main extends JavaPlugin implements Listener, CommandExecutor 
 
             case "cooldown_reset":
                 CooldownReset.cooldown_reset(sender, k_cooldown, u_cooldown, args);
+                break;
+
+            case "set":
+                WayPoint.Cset(sender);
+                break;
+
+            case "get":
+                WayPoint.Cget(sender);
+                break;
+
+            case "del":
+                WayPoint.Cdel(sender);
                 break;
         }
 
