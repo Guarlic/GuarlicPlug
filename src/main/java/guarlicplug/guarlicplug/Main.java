@@ -15,11 +15,13 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.Command;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.Plugin;
 
 import guarlicplug.guarlicplug.Commands.Emoji;
 import guarlicplug.guarlicplug.Commands.InventoryCommand;
 import guarlicplug.guarlicplug.Commands.CooldownReset;
 import guarlicplug.guarlicplug.Commands.WayPoint;
+import guarlicplug.guarlicplug.Commands.Tabcom;
 import guarlicplug.guarlicplug.Events.Skill;
 
 
@@ -28,19 +30,23 @@ public final class Main extends JavaPlugin implements Listener, CommandExecutor 
     private ArrayList<Player> k_cooldown = new ArrayList<Player>();
     private ArrayList<Player> u_cooldown = new ArrayList<Player>();
 
+    private static Plugin plugin;
+
     @Override
     public void onEnable() {
         // Plugin startup logic
         getLogger().info("GuarlicPlug is Enabled!");
         getServer().getPluginManager().registerEvents(this, this);
 
+        plugin = this;
+
         getCommand("happy").setExecutor(this);
         getCommand("angry").setExecutor(this);
         getCommand("inv").setExecutor(this);
         getCommand("cooldown_reset").setExecutor(this);
-        getCommand("set").setExecutor(this);
-        getCommand("get").setExecutor(this);
-        getCommand("del").setExecutor(this);
+        getCommand("waypoint").setExecutor(this);
+
+        getServer().getPluginCommand("waypoint").setTabCompleter(new Tabcom());
     }
 
     @Override
@@ -69,16 +75,8 @@ public final class Main extends JavaPlugin implements Listener, CommandExecutor 
                 CooldownReset.cooldown_reset(sender, k_cooldown, u_cooldown, args);
                 break;
 
-            case "set":
-                WayPoint.Cset(sender);
-                break;
-
-            case "get":
-                WayPoint.Cget(sender);
-                break;
-
-            case "del":
-                WayPoint.Cdel(sender);
+            case "waypoint":
+                WayPoint.waypoint(sender, args);
                 break;
         }
 
@@ -142,5 +140,9 @@ public final class Main extends JavaPlugin implements Listener, CommandExecutor 
                 }
             }
         }
+    }
+
+    public static Plugin getPlugin() {
+        return plugin;
     }
 }

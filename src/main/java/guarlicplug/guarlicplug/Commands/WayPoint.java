@@ -1,118 +1,66 @@
 package guarlicplug.guarlicplug.Commands;
 
-import java.util.ArrayList;
-import java.util.UUID;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.command.CommandSender;
 
-class WayPoints {
-    private UUID id;
-    private int x;
-    private int y;
-    private int z;
-
-    public UUID getId() {
-        return this.id;
-    }
-
-    public void setId(UUID _id) {
-        this.id = _id;
-    }
-
-    public void setX(int _x) {
-        this.x = _x;
-    }
-
-    public void setY(int _y) {
-        this.y = _y;
-    }
-
-    public void setZ(int _z) {
-        this.z = _z;
-    }
-
-    public int getX() {
-        return this.x;
-    }
-
-    public int getY() {
-        return this.y;
-    }
-
-    public int getZ() {
-        return this.z;
-    }
-}
-
 public class WayPoint {
-    private static ArrayList<WayPoints> waypoint_list = new ArrayList<WayPoints>();
+    public static void waypoint(CommandSender sender, String[] args) {
+        switch (args[0]) {
+            case "set":
+                Cset(sender);
+                break;
 
-    public static void Cset(CommandSender sender) {
-        Player p = (Player) sender;
+            case "get":
+                Cget(sender);
+                break;
 
-        int size = waypoint_list.size();
+            case "del":
+                Cdel(sender);
+                break;
 
-        for (int i = 0; i < size; i++) {
-            if (waypoint_list.get(i).getId().equals(p.getUniqueId())) {
-                waypoint_list.remove(i);
-            }
+            default:
+                sender.sendMessage(ChatColor.DARK_RED + "Failed to use waypoint command because wrong argument.");
         }
+    }
 
-        WayPoints a = new WayPoints();
+    private static void Cset(CommandSender sender) {
+        Player p = (Player) sender;
+        SetXYZ s = new SetXYZ();
 
-        a.setId(p.getUniqueId());
-        a.setX((int) p.getLocation().x());
-        a.setY((int) p.getLocation().y());
-        a.setZ((int) p.getLocation().z());
+        int x = (int) p.getLocation().x();
+        int y = (int) p.getLocation().y();
+        int z = (int) p.getLocation().z();
 
-        waypoint_list.add(a);
+        s.setXYZ(p, x, y, z);
 
         p.sendMessage(ChatColor.GREEN + "Successfully saved coordinate.");
     }
 
-    public static void Cget(CommandSender sender) {
+    private static void Cget(CommandSender sender) {
         Player p = (Player) sender;
-        WayPoints a = null;
+        SetXYZ s = new SetXYZ();
 
-        int size = waypoint_list.size();
-
-        for (int i = 0; i < size; i++) {
-            if (waypoint_list.get(i).getId().equals(p.getUniqueId())) {
-                a = waypoint_list.get(i);
-            }
-        }
-
-        if (a == null) {
+        if (s.isReset(p)) {
             p.sendMessage(ChatColor.DARK_RED + "Failed to get coordinate because you didn't saved coordinate.");
 
             return;
         }
 
-        p.sendMessage("Current saved coordinate: " + ChatColor.GRAY + "(" + a.getX() + ", " + a.getY() + ", " + a.getZ() + ")");
+        p.sendMessage("Current saved coordinate: " + ChatColor.GRAY + "(" + s.getX(p) + ", " + s.getY(p) + ", " + s.getZ(p) + ")");
     }
 
-    public static void Cdel(CommandSender sender) {
+    private static void Cdel(CommandSender sender) {
         Player p = (Player) sender;
-        WayPoints a = null;
+        SetXYZ s = new SetXYZ();
 
-        int size = waypoint_list.size();
-        int n = -1;
-
-        for (int i = 0; i < size; i++) {
-            if (waypoint_list.get(i).getId().equals(p.getUniqueId())) {
-                a = waypoint_list.get(i);
-                n = i;
-            }
-        }
-
-        if (a == null && n == -1) {
+        if (s.isReset(p)) {
             p.sendMessage(ChatColor.DARK_RED + "Failed to delete coordinate because you didn't saved coordinate.");
 
             return;
         }
 
-        waypoint_list.remove(n);
+        s.resetXYZ(p);
 
         p.sendMessage(ChatColor.GREEN + "Successfully deleted saved coordinate.");
     }
